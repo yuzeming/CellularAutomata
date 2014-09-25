@@ -1,0 +1,22 @@
+<html>
+<head>
+  <title>细胞自动机</title>
+  <link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script src="cell.js"></script>
+  <label for="width">宽度</label>
+  <input type="number" id="width" min="0" max="100" value="10">
+  <label for="height">高度</label>
+  <input type="number" id="height"  min="0" max="100" value="10">
+  <input type="button" id="start" value="开始" onclick="Start()">
+
+  <input type="button" id="move" value="移动" onclick="Move()">
+  <label>
+  <input type="checkbox" id="auto" onchange="Auto()">
+      自动
+  </label>
+  时间:<span id="time">0</span>
+  <div id="main"></div>
+</body>
+</html>

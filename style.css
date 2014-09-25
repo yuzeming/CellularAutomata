@@ -1,0 +1,22 @@
+#main div
+{
+    width: 10px;
+    height: 10px;
+    position: absolute;
+}
+
+#main div.die
+{
+    background: gray;
+}
+
+#main div.alive
+{
+    background: green;
+}
+
+#main {
+    position: relative;;
+    left: 0;
+    top: 0;
+}
