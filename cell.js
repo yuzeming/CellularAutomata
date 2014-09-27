@@ -10,6 +10,10 @@ function Cell(x,y,s)
     this.dom = new CellDiv();
     this.dom.style.top = x * 10 + "px";
     this.dom.style.left = y * 10 + "px";
+    this.dom.cell = this;
+    this.dom.onclick = function () {
+        this.cell.state =! this.cell._state
+    }   
     this.__defineSetter__("state",function(val){
         if (this._state != val) {
             this._state = val;
@@ -76,9 +80,11 @@ function Move()
             var n = 0;
             for (var f=0;f<8;++f){
                 if (0<= i+Fx[f] && i+Fx[f]<h && 0<=j+Fy[f] && j+Fy[f]<w){
-                    n += Map[i+Fx[f]][j+Fy[f]]._state;
+                    n += Map[(i + Fx[f] + h) % h][(j + Fy[f] + w) % w]._state;
+                    console.info(i, j, (i + Fx[f] + h) % h, (j + Fy[f] + w) % w);
                 }
             }
+ //           console.info("Map "+i+' '+j+' '+ n);
             if (n==3){
                 Map[i][j].newState = true;
             } else if (n==2) {
