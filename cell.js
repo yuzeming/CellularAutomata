@@ -79,7 +79,7 @@ function Move()
         for (var j=0;j<w;++j){
             var n = 0;
             for (var f=0;f<8;++f){
-                if (0<= i+Fx[f] && i+Fx[f]<h && 0<=j+Fy[f] && j+Fy[f]<w){
+                {
                     n += Map[(i + Fx[f] + h) % h][(j + Fy[f] + w) % w]._state;
                     console.info(i, j, (i + Fx[f] + h) % h, (j + Fy[f] + w) % w);
                 }
