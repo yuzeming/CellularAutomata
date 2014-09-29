@@ -1,43 +1,55 @@
-function CellDiv()
+var Fx = [0,0,1,-1,1,1,-1,-1];
+var Fy = [1,-1,0,0,1,-1,1,-1];
+var SIZE = 8;
+
+function CellDiv(x,y,cell)
 {
     var ret = document.createElement("div");
     document.getElementById("main").appendChild(ret);
+	ret.style.top = x * SIZE + "px";
+    ret.style.left = y * SIZE + "px";
+	ret.cell = cell;
+    ret.onclick = function () {
+        this.cell.state =! this.cell._state
+    }
+	ret.SetState = function (val) {
+		if (val) {
+			this.classList.remove("die");
+			this.classList.add("alive");
+		} else {
+			this.classList.add("die");
+			this.classList.remove("alive");
+		}
+	}
     return ret;
 }
 
 function Cell(x,y,s)
 {
-    this.dom = new CellDiv();
-    this.dom.style.top = x * 10 + "px";
-    this.dom.style.left = y * 10 + "px";
-    this.dom.cell = this;
-    this.dom.onclick = function () {
-        this.cell.state =! this.cell._state
-    }   
+    this.dom = new CellDiv(x,y,this);
     this.__defineSetter__("state",function(val){
         if (this._state != val) {
             this._state = val;
-            if (val) {
-                this.dom.classList.remove("die");
-                this.dom.classList.add("alive");
-            } else {
-                this.dom.classList.add("die");
-                this.dom.classList.remove("alive");
-            }
+			this.dom.SetState(val);
         }
     });
     this.state = s;
     this.newState = s;
-
     this.upData = function(){
         this.state = this.newState;
     };
 }
 
-var Map = [];
-var time = 0;
+function SetTime(t)
+{
+	time = t;
+	document.getElementById("time").textContent = time;
+}
 
-function Start()
+var Map = [];
+var time = 0, h, w;
+
+function CleanAll()
 {
     for (var i=0;i<Map.length;++i){
         for (var j=0;j<Map[i].length;++j){
@@ -48,25 +60,30 @@ function Start()
     while (Map.length >0){
         Map.pop();
     }
+	
+	SetTime(0);
+}
 
-    time = 0;
-    document.getElementById("time").textContent = time;
-    var h = parseInt(document.getElementById("height").value);
-    var w = parseInt(document.getElementById("width").value);
+function GetGameSize()
+{
+    h = parseInt(document.getElementById("height").value);
+    w = parseInt(document.getElementById("width").value);
+    document.getElementById("main").style.width = w * SIZE +"px";
+    document.getElementById("main").style.height = h * SIZE +"px";
+}
+
+function Start()
+{
+    CleanAll();
+	GetGameSize();
     for (var i=0;i<h;i++){
         var line = [];
         for (var j=0;j<w;++j){
-            line.push(new Cell(i,j,(Math.random() >.5)));
+            line.push(new Cell(i,j,(Math.random() > (3.0/8.0) )));
         }
         Map.push(line);
     }
-    document.getElementById("main").style.width = w * 10 +"px";
-    document.getElementById("main").style.height = h * 10 +"px";
-
 }
-
-var Fx = [0,0,1,-1,1,1,-1,-1];
-var Fy = [1,-1,0,0,1,-1,1,-1];
 
 function Move()
 {
@@ -79,23 +96,22 @@ function Move()
         for (var j=0;j<w;++j){
             var n = 0;
             for (var f=0;f<8;++f){
-                {
-                    n += Map[(i + Fx[f] + h) % h][(j + Fy[f] + w) % w]._state;
-                    console.info(i, j, (i + Fx[f] + h) % h, (j + Fy[f] + w) % w);
-                }
+				n += Map[(i + Fx[f] + h) % h][(j + Fy[f] + w) % w]._state;
             }
- //           console.info("Map "+i+' '+j+' '+ n);
-            if (n==3){
-                Map[i][j].newState = true;
-            } else if (n==2) {
-                Map[i][j].newState = Map[i][j]._state;
-            } else {
-                Map[i][j].newState = false;
+			switch (n)
+            {
+				case 3:
+					Map[i][j].newState = true;
+					break;
+				case 2:
+					Map[i][j].newState = Map[i][j]._state;
+					break;
+				default:
+					Map[i][j].newState = false;
             }
         }
     }
-    time +=1;
-    document.getElementById("time").textContent = time;
+    SetTime(time+1);
     for (var i=0;i<h;++i) {
         for (var j = 0; j < w; ++j) {
             Map[i][j].upData();
@@ -104,6 +120,7 @@ function Move()
 }
 
 var auto = 0;
+
 function Auto() {
     if (document.getElementById("auto").checked){
         auto = setInterval(Move,100);
