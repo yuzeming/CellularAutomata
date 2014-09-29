@@ -117,6 +117,7 @@ function Move()
             Map[i][j].upData();
         }
     }
+    return Map;
 }
 
 var auto = 0;
