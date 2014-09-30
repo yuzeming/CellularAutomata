@@ -36,7 +36,14 @@ function map_toObject() {
  */
 testdata = [];
 resultdata = [];
-testNum = 1;
+testNum = 9;
+testdata.push({
+    w: 1,
+    h: 1,
+    map: [[1]]
+
+})
+resultdata.push([[0]]);
 testdata.push({
     w: 4,
     h: 4,
@@ -50,7 +57,95 @@ resultdata.push([[1, 0, 0, 1],
                  [0, 0, 0, 0],
                  [0, 0, 0, 0],
                  [1, 0, 0, 1]]);
+testdata.push({
+    w: 4,
+    h: 4,
+    map: [[1, 0, 0, 1],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [1, 0, 0, 1]]
 
+})
+resultdata.push([[1, 0, 0, 1],
+                 [0, 0, 0, 0],
+                 [0, 0, 0, 0],
+                 [1, 0, 0, 1]]);
+testdata.push({
+    w: 5,
+    h: 5,
+    map: [[0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 1, 1, 1, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0]]
+})
+resultdata.push([[0, 0, 0, 0, 0],
+                 [0, 0, 1, 0, 0],
+                 [0, 0, 1, 0, 0],
+                 [0, 0, 1, 0, 0],
+                 [0, 0, 0, 0, 0]]);
+testdata.push({
+    w: 7,
+    h: 1,
+    map: [[1, 0, 1, 0, 0, 1, 1]]
+})
+resultdata.push([[0, 0, 1, 1, 1, 0, 0]]);
+testdata.push({
+    w: 5,
+    h: 5,
+    map: [[0, 0, 0, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 0, 1, 0],
+          [0, 1, 1, 1, 0],
+          [0, 0, 0, 0, 0]]
+})
+resultdata.push([[0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0],
+                 [0, 1, 0, 1, 0],
+                 [0, 0, 1, 1, 0],
+                 [0, 0, 1, 0, 0]]);
+testdata.push({
+    w: 5,
+    h: 5,
+    map: [[0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 1, 0, 1, 0],
+          [0, 0, 1, 1, 0],
+          [0, 0, 1, 0, 0]]
+})
+resultdata.push([[0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0],
+                 [0, 0, 0, 1, 0],
+                 [0, 1, 0, 1, 0],
+                 [0, 0, 1, 1, 0]]);
+testdata.push({
+    w: 5,
+    h: 5,
+    map: [[0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 1, 0],
+          [0, 1, 0, 1, 0],
+          [0, 0, 1, 1, 0]]
+})
+resultdata.push([[0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0],
+                 [0, 0, 1, 0, 0],
+                 [0, 0, 0, 1, 1],
+                 [0, 0, 1, 1, 0]]);
+testdata.push({
+    w: 5,
+    h: 5,
+    map: [[0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 1, 0, 0],
+          [0, 0, 0, 1, 1],
+          [0, 0, 1, 1, 0]]
+})
+resultdata.push([[0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0],
+                 [0, 0, 0, 1, 0],
+                 [0, 0, 0, 0, 1],
+                 [0, 0, 1, 1, 1]]);
 /** 根据testdata指定当前状态
  *
  *  testdata 测试数据对象
@@ -73,7 +168,7 @@ function setMap(testdata) {
 test('cell_logic_test', function () {
     for (var i = 0; i < testNum; ++i) {
         setMap(testdata[i]);
-        deepEqual(map_toObject(Game.Move()), resultdata[i], 'Move() test');
+        deepEqual(map_toObject(Game.Move()), resultdata[i], 'Move() test pass');
 
     }
 })
