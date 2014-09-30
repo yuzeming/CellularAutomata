@@ -1,0 +1,333 @@
+{
+    "project": {},
+    "files": {
+        "cell.js": {
+            "name": "cell.js",
+            "modules": {
+                "CellularAutomate": 1
+            },
+            "classes": {
+                "CellDiv": 1,
+                "Cell": 1,
+                "Game": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "test.js": {
+            "name": "test.js",
+            "modules": {
+                "CellularAutomateTest": 1
+            },
+            "classes": {
+                "TestClass": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "CellularAutomate": {
+            "name": "CellularAutomate",
+            "submodules": {},
+            "classes": {
+                "CellDiv": 1,
+                "Cell": 1,
+                "Game": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "cell.js",
+            "line": 75,
+            "description": "细胞自动机"
+        },
+        "CellularAutomateTest": {
+            "name": "CellularAutomateTest",
+            "submodules": {},
+            "classes": {
+                "TestClass": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "test.js",
+            "line": 76,
+            "description": "细胞自动机测试"
+        }
+    },
+    "classes": {
+        "CellDiv": {
+            "name": "CellDiv",
+            "shortname": "CellDiv",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "CellularAutomate",
+            "namespace": "",
+            "file": "cell.js",
+            "line": 11,
+            "description": "这个类实现了细胞的显示",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "x",
+                    "description": "细胞X坐标",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "细胞Y坐标",
+                    "type": "Number"
+                },
+                {
+                    "name": "cell",
+                    "description": "细胞对象，用于绑定onclick事件",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Cell": {
+            "name": "Cell",
+            "shortname": "Cell",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "CellularAutomate",
+            "namespace": "",
+            "file": "cell.js",
+            "line": 42,
+            "description": "这个类存贮了细胞的状态，并维护显示状态。",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "x",
+                    "description": "细胞X坐标",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "细胞Y坐标",
+                    "type": "Number"
+                },
+                {
+                    "name": "s",
+                    "description": "细胞初始状态",
+                    "type": "Bool"
+                }
+            ]
+        },
+        "Game": {
+            "name": "Game",
+            "shortname": "Game",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "CellularAutomate",
+            "namespace": "",
+            "file": "cell.js",
+            "line": 75,
+            "description": "这个类实现了界面操作，并存储必要的信息。"
+        },
+        "TestClass": {
+            "name": "TestClass",
+            "shortname": "TestClass",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "CellularAutomateTest",
+            "namespace": "",
+            "file": "test.js",
+            "line": 76,
+            "description": "细胞自动机测试数据",
+            "is_constructor": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "cell.js",
+            "line": 83,
+            "description": "设定当前时间并更新时间标签。",
+            "itemtype": "method",
+            "name": "SetTime",
+            "params": [
+                {
+                    "name": "t",
+                    "description": "时间数值",
+                    "type": "Number"
+                }
+            ],
+            "class": "Game",
+            "module": "CellularAutomate"
+        },
+        {
+            "file": "cell.js",
+            "line": 96,
+            "description": "全局二维数组",
+            "itemtype": "property",
+            "name": "Map",
+            "type": "{ Array(Array(Cell)) }",
+            "default": "Array(Array())",
+            "class": "Game",
+            "module": "CellularAutomate"
+        },
+        {
+            "file": "cell.js",
+            "line": 105,
+            "description": "时间",
+            "itemtype": "property",
+            "name": "time",
+            "type": "{Number}",
+            "default": "0",
+            "class": "Game",
+            "module": "CellularAutomate"
+        },
+        {
+            "file": "cell.js",
+            "line": 114,
+            "description": "高度",
+            "itemtype": "property",
+            "name": "h",
+            "type": "{Number}",
+            "class": "Game",
+            "module": "CellularAutomate"
+        },
+        {
+            "file": "cell.js",
+            "line": 122,
+            "description": "宽度",
+            "itemtype": "property",
+            "name": "w",
+            "type": "{Number}",
+            "class": "Game",
+            "module": "CellularAutomate"
+        },
+        {
+            "file": "cell.js",
+            "line": 130,
+            "description": "生成比率",
+            "itemtype": "property",
+            "name": "r",
+            "type": "{Float}",
+            "class": "Game",
+            "module": "CellularAutomate"
+        },
+        {
+            "file": "cell.js",
+            "line": 138,
+            "description": "清除二维数组Map,并删除所对应的Dom",
+            "itemtype": "method",
+            "name": "CleanAll",
+            "class": "Game",
+            "module": "CellularAutomate"
+        },
+        {
+            "file": "cell.js",
+            "line": 158,
+            "description": "获取输入，高度，宽度，生成比率。",
+            "itemtype": "method",
+            "name": "GetInput",
+            "class": "Game",
+            "module": "CellularAutomate"
+        },
+        {
+            "file": "cell.js",
+            "line": 173,
+            "description": "初始化操作",
+            "itemtype": "method",
+            "name": "Start",
+            "class": "Game",
+            "module": "CellularAutomate"
+        },
+        {
+            "file": "cell.js",
+            "line": 191,
+            "description": "模拟下一秒状态",
+            "itemtype": "method",
+            "name": "Move",
+            "class": "Game",
+            "module": "CellularAutomate"
+        },
+        {
+            "file": "cell.js",
+            "line": 228,
+            "description": "自动模拟下一步操作",
+            "itemtype": "method",
+            "name": "Start",
+            "class": "Game",
+            "module": "CellularAutomate"
+        },
+        {
+            "file": "test.js",
+            "line": 15,
+            "description": "根据Game对象中提取当前状态的二维数组",
+            "itemtype": "method",
+            "name": "map_formObject",
+            "params": [
+                {
+                    "name": "game",
+                    "description": "Game对象",
+                    "type": "Object"
+                }
+            ],
+            "class": "TestClass",
+            "module": "CellularAutomateTest"
+        },
+        {
+            "file": "test.js",
+            "line": 35,
+            "description": "根据数组指定当前状态",
+            "itemtype": "method",
+            "name": "setMap",
+            "params": [
+                {
+                    "name": "game",
+                    "description": "Game对象",
+                    "type": "Object"
+                },
+                {
+                    "name": "t",
+                    "description": "二维数组",
+                    "type": "Array(Array(Bool))"
+                }
+            ],
+            "class": "TestClass",
+            "module": "CellularAutomateTest"
+        },
+        {
+            "file": "test.js",
+            "line": 57,
+            "description": "运行测试并比较输出",
+            "itemtype": "method",
+            "name": "runtest",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "测试名称",
+                    "type": "String"
+                },
+                {
+                    "name": "input",
+                    "description": "输入数据",
+                    "type": "Array(Array(Bool))"
+                },
+                {
+                    "name": "output",
+                    "description": "期望输出数据数据",
+                    "type": "Array(Array(Bool))"
+                }
+            ],
+            "class": "TestClass",
+            "module": "CellularAutomateTest"
+        }
+    ],
+    "warnings": []
+}
