@@ -4,9 +4,7 @@
     <title>QUnit Test Suite</title>
     <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.15.0.css" type="text/css" media="screen">
     <script type="text/javascript" src="http://code.jquery.com/qunit/qunit-1.15.0.js"></script>
-    <!-- Your project file goes here -->
     <script type="text/javascript" src="cell.js"></script>
-    <!-- Your tests file goes here -->
     <script type="text/javascript" src="test.js"></script>
 </head>
 <body>
@@ -15,9 +13,9 @@
     <div id="qunit-testrunner-toolbar"></div>
     <h2 id="qunit-userAgent"></h2>
     <ol id="qunit-tests"></ol>
-  <input type="number" id="width" min="0" max="100" value="10" style="display:none">
-  <input type="number" id="height"  min="0" max="100" value="10" style="display:none">
-  <span id="time" style="display:none">0</span>
-  <div id="main" style="display:none"></div>
+    <input type="hidden" id="width" value="10">
+    <input type="hidden" id="height" value="10">
+    <span id="time" style="display:none">0</span>
+    <div id="main" style="display:none"></div>
 </body>
 </html>

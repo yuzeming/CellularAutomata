@@ -1,79 +1,106 @@
-/**
- * Ï¸°û×Ô¶¯»ú²âÊÔ
+ï»¿/**
+ * ç»†èƒžè‡ªåŠ¨æœºæµ‹è¯•
  *
  * @module CellularAutomateTest
  */
 
-/** ¹ýÂËGame.MapÖÐÎÞ¹ØÐÅÏ¢
- *
- *  ·µ»Ø½ö´æ´¢Ï¸°û×´Ì¬ÖµÊý×é
- */
-function map_toObject() {
-    var h = Game.h;
-    var w = Game.w;
-    var convertResult = [];
-    for (var i = 0; i < h; i++) {
-        var line = [];
-        for (var j = 0; j < w; j++) {
-            if (Game.Map[i][j]._state) {
-                line.push(1);
-            }
-            else {
-                line.push(0);
-            }
-        }
-        convertResult.push(line);
-    }
-    return convertResult;
+/**
+* ç»†èƒžè‡ªåŠ¨æœºæµ‹è¯•ç•Œé¢
+*
+* @class TestClass
+* @constructor
+*/
+ 
+var TestClass = {
+	/**
+	* æ ¹æ®Gameå¯¹è±¡ä¸­æå–å½“å‰çŠ¶æ€çš„äºŒç»´æ•°ç»„
+	*
+	* @method map_formObject
+	* @param {Object} game Gameå¯¹è±¡
+	*/
+	map_formObject:function (game) {
+		var h = game.h;
+		var w = game.w;
+		var convertResult = [];
+		for (var i = 0; i < h; i++) {
+			var line = [];
+			for (var j = 0; j < w; j++) {
+				line.push(game.Map[i][j].state?1:0);
+			}
+			convertResult.push(line);
+		}
+		return convertResult;
+	},
+
+	/**
+	* æ ¹æ®æ•°ç»„æŒ‡å®šå½“å‰çŠ¶æ€
+	*
+	* @method setMap
+	* @param {Object} game Gameå¯¹è±¡
+	* @param {Array(Array(Bool))} t äºŒç»´æ•°ç»„
+	*/
+	setMap:function (game,t) {
+		game.CleanAll();
+		var h = t.length;
+		var w = t[0].length;
+		game.h = h;
+		game.w = w;
+		for (var i = 0; i < h; i++) {
+			var line = [];
+			for (var j = 0; j < w; ++j) {
+				line.push(new Cell(i, j, (t[i][j])));
+			}
+			game.Map.push(line);
+		}
+	},
+
+	/**
+	* è¿è¡Œæµ‹è¯•å¹¶æ¯”è¾ƒè¾“å‡º
+	*
+	* @method runtest
+	* @param {String} name æµ‹è¯•åç§°
+	* @param {Array(Array(Bool))} input è¾“å…¥æ•°æ®
+	* @param {Array(Array(Bool))} output æœŸæœ›è¾“å‡ºæ•°æ®æ•°æ®
+	*/
+	runtest : function (name,input,output){
+		var _this = this;
+		test(name,function() {
+			_this.setMap(Game,input);
+			Game.Move();
+			deepEqual(_this.map_formObject(Game), output, "Map");
+		})
+	}
 }
 
-/** ²âÊÔÊý¾Ý
- *  testdata[i].h Êý¾ÝÐÐÊý
- *  testdata[i].w Êý¾ÝÁÐÊý
- *  testdata[i].map ÆåÅÌÃèÊö
- *  resultdata[i].map ÏÂÒ»´úÆåÅÌÃèÊö
- *  testNum ²âÊÔ×ÜÊý
- */
-testdata = [];
-resultdata = [];
-testNum = 1;
-testdata.push({
-    w: 4,
-    h: 4,
-    map: [[1, 0, 0, 1],
-          [0, 0, 0, 0],
-          [0, 0, 0, 0],
-          [1, 0, 0, 0]]
 
-})
-resultdata.push([[1, 0, 0, 1],
-                 [0, 0, 0, 0],
-                 [0, 0, 0, 0],
-                 [1, 0, 0, 1]]);
+/**
+* ç»†èƒžè‡ªåŠ¨æœºæµ‹è¯•æ•°æ®
+*
+* @class TestClass
+* @constructor
+*/
+var Test={
 
-/** ¸ù¾ÝtestdataÖ¸¶¨µ±Ç°×´Ì¬
- *
- *  testdata ²âÊÔÊý¾Ý¶ÔÏó
- */
-function setMap(testdata) {
-    Game.CleanAll();
-    var h = testdata.h;
-    var w = testdata.w;
-    Game.h = h;
-    Game.w = w;
-    for (var i = 0; i < h; i++) {
-        var line = [];
-        for (var j = 0; j < w; ++j) {
-            line.push(new Cell(i, j, (testdata.map[i][j])));
-        }
-        Game.Map.push(line);
-    }
+	testdata : [
+		[[1, 0, 0, 1],
+		 [0, 0, 0, 0],
+		 [0, 0, 0, 0],
+		 [1, 0, 0, 0]]
+		 
+	],
+	resultdata : [
+		[[1, 0, 0, 1],
+		 [0, 0, 0, 0],
+		 [0, 0, 0, 0],
+		 [1, 0, 0, 1]]
+	],
+	testNum : 1,
+
+	main: function (){
+		for (var i = 0;i<this.testNum;++i){
+			TestClass.runtest("TEST_"+i,this.testdata[i],this.resultdata[i]);
+		}
+	}
 }
 
-test('cell_logic_test', function () {
-    for (var i = 0; i < testNum; ++i) {
-        setMap(testdata[i]);
-        deepEqual(map_toObject(Game.Move()), resultdata[i], 'Move() test');
-
-    }
-})
+Test.main();

@@ -97,8 +97,8 @@ var Game = {
 	* 全局二维数组
 	* 
 	* @property Map
-	* @type { [ [Object] ] }
-	* @default []
+	* @type { Array(Array(Cell)) }
+	* @default Array(Array())
 	*/
 	Map : [],
 	
@@ -244,5 +244,3 @@ var Game = {
 	}
 }
 
-var Move = Game.Move;
-var Start = Game.Start;
